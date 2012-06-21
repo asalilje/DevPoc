@@ -1,0 +1,19 @@
+﻿@model DateTime
+
+@(Model.Date == DateTime.MinValue ? Html.TextBox("", DateTime.Now.ToString("yyyy-MM-dd"), new {@class = "date"}) : Html.TextBox("", Model.ToString("yyyy-MM-dd"), new {@class = "date"}))
+    
+@{
+var name = ViewData.TemplateInfo.HtmlFieldPrefix;
+var id = name.Replace( ".", "_" );
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#@id').datepicker
+            ({
+                dateFormat: 'yy-mm-dd',
+                numberOfMonths: 1,
+                showAnim: "scale",
+
+            });
+    });
+</script>
