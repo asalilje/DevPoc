@@ -22,15 +22,14 @@ namespace Deviation.Web.Models
         public int DeviationTypeId { get; set; }
 
         [DisplayName("Startdatum")]
-        public DateTime ValidFrom { get; set; }
+		public DateTime? ValidFrom { get; set; }
 
         [DisplayName("Slutdatum")]
         [DateGreaterThan("ValidFrom")]
-        public DateTime ValidTo { get; set; }
+        public DateTime? ValidTo { get; set; }
 
         public IEnumerable<DeviationModel> DeviationList { get; set; }
-
-
+		
         public IEnumerable<SelectListItem> DeviationTypes
         {
             get

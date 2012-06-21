@@ -1,6 +1,7 @@
-﻿@model DateTime
+﻿@model DateTime?
 
-@(Model.Date == DateTime.MinValue ? Html.TextBox("", DateTime.Now.ToString("yyyy-MM-dd"), new {@class = "date"}) : Html.TextBox("", Model.ToString("yyyy-MM-dd"), new {@class = "date"}))
+@(Model == null || Model.Value == DateTime.MinValue ? Html.TextBox("", DateTime.Now.ToString("yyyy-MM-dd"), new {@class = "date"}) : Html.TextBox("", Model.Value.ToString("yyyy-MM-dd"), new {@class = "date"}))
+
     
 @{
 var name = ViewData.TemplateInfo.HtmlFieldPrefix;

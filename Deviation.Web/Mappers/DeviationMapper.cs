@@ -15,8 +15,8 @@ namespace Deviation.Web.Mappers
             entity.DeviationTypeId = model.DeviationTypeId;
             var dateInterval = new DateInterval
                                    {
-                                       ValidFrom = model.ValidFrom, 
-                                       ValidTo = model.ValidTo
+                                       ValidFrom = model.ValidFrom ?? DateTime.MinValue, 
+                                       ValidTo = model.ValidTo ?? DateTime.MaxValue
                                    };
             entity.DateInterval = dateInterval;
 
