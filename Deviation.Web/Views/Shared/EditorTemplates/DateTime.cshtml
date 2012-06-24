@@ -1,6 +1,6 @@
-﻿@model DateTime?
+﻿@model DateTime
 
-@(Model == null || Model.Value == DateTime.MinValue ? Html.TextBox("", DateTime.Now.ToString("yyyy-MM-dd"), new {@class = "date"}) : Html.TextBox("", Model.Value.ToString("yyyy-MM-dd"), new {@class = "date"}))
+@(Model == DateTime.MinValue ? Html.TextBox("", DateTime.Now.ToString("yyyy-MM-dd"), new {@class = "date"}) : Html.TextBox("", Model.ToString("yyyy-MM-dd"), new {@class = "date"}))
 
     
 @{

@@ -24,12 +24,7 @@ namespace Deviation.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Här skapar och ändrar du avvikelser.";
-
-
-        	var deviationList = _deviationRepository.GetItems();
-            var mapper = new DeviationMapper();
-            var deviationModelList = deviationList.ToList().Select(mapper.MapToModel);
-            var model = new DeviationModel {DeviationList = deviationModelList};
+        	var model = new DeviationModel {DeviationList = GetDeviationList()};
             return View(model);
         }
 
@@ -37,9 +32,11 @@ namespace Deviation.Web.Controllers
         public ActionResult Index(DeviationModel model)
         {
             if (!ModelState.IsValid)
+            {
+                model.DeviationList = GetDeviationList();
                 return View(model);
-
-
+            }
+            
             model.DeviationId = Guid.NewGuid();
             var mapper = new DeviationMapper();
             var entity = mapper.MapToEntity(model);
@@ -55,6 +52,12 @@ namespace Deviation.Web.Controllers
             return RedirectToAction("Index");
         }
 
- 
+        private IEnumerable<DeviationModel> GetDeviationList()
+        {
+            var deviationList = _deviationRepository.GetItems();
+            var mapper = new DeviationMapper();
+            var deviationModelList = deviationList.ToList().Select(mapper.MapToModel);
+            return deviationModelList;
+        }
     }
 }

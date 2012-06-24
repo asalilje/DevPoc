@@ -22,11 +22,13 @@ namespace Deviation.Web.Models
         public int DeviationTypeId { get; set; }
 
         [DisplayName("Startdatum")]
-		public DateTime? ValidFrom { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+		public DateTime ValidFrom { get; set; }
 
         [DisplayName("Slutdatum")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [DateGreaterThan("ValidFrom")]
-        public DateTime? ValidTo { get; set; }
+        public DateTime ValidTo { get; set; }
 
         public IEnumerable<DeviationModel> DeviationList { get; set; }
 		

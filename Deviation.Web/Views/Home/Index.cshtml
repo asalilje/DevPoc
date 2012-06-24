@@ -37,7 +37,7 @@ else
     
         @foreach (var item in Model.DeviationList)
         {
-            <tr>
+            <tr class="tr_borderbottom">
                 <td>
                     @Html.DisplayFor(modelItem => item.DeviationName)
                 </td>
@@ -51,9 +51,9 @@ else
                     @Html.DisplayFor(modelItem => item.ValidTo)
                 </td>
                 <td>
-                    @using (Html.BeginForm("Delete"))
+                    @using (Html.BeginForm("Delete", "Home"))
                     {
-                        
+                        @Html.Hidden("DeviationId", item.DeviationId)
                         <input type="submit" value="Ta bort"/>
                         
                     }
@@ -121,5 +121,4 @@ else
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
-
 
