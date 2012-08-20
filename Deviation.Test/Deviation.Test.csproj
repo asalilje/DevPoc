@@ -59,14 +59,6 @@
     <Compile Include="RepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
-      <Project>{38783E7F-9390-4860-A339-249D6F9D8A01}</Project>
-      <Name>Common.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Repository\Common.Repository.csproj">
-      <Project>{f070f3fb-e238-4c24-bd69-242481c1fa8f}</Project>
-      <Name>Common.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>

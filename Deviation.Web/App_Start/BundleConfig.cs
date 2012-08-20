@@ -11,14 +11,18 @@ namespace Deviation.Web
                         "~/Scripts/jquery-1.*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui*"));
+                        "~/Scripts/jquery-ui*",
+						"~/Scripts/jquery.ui*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
+						"~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
+			bundles.Add(new ScriptBundle("~/bundles/deviation").Include(
+						"~/Scripts/deviation.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

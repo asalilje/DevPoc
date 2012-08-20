@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using Common.Repository;
 
 namespace Deviation.Logic
 {
@@ -10,7 +8,7 @@ namespace Deviation.Logic
     public class DeviationRepository : IRepository<Entities.Deviation>
     {
 
-        private IDataContext<Entities.Deviation> _dataContext;
+        private readonly IDataContext<Entities.Deviation> _dataContext;
 
         public DeviationRepository(IDataContext<Entities.Deviation> dataContext)
         {
@@ -36,7 +34,10 @@ namespace Deviation.Logic
 
         public void AddItem(Entities.Deviation item)
         {
-            _dataContext.Collection.Add(item);
+			if(_dataContext.Collection.Any(deviation => deviation.DeviationId == item.DeviationId))
+				_dataContext.Collection.Remove(_dataContext.Collection.Single(deviation => deviation.DeviationId == item.DeviationId));
+
+			_dataContext.Collection.Add(item);
         }
 
 

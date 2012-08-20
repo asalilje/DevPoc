@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Common.Logic;
-using Common.Repository;
 using Deviation.Entities;
+using Deviation.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StructureMap;
 

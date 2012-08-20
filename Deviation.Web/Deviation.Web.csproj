@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
@@ -132,14 +135,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DeviationController.cs" />
+    <Compile Include="Controllers\RepositoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappers\DeviationMapper.cs" />
-    <Compile Include="Mappers\IMapper.cs" />
-    <Compile Include="Mappers\Mapper.cs" />
-    <Compile Include="Models\CustomValidators\DateGreaterThan.cs" />
+    <Compile Include="Infrastructure\Mappers\DeviationMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\IGenericMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\GenericMapper.cs" />
     <Compile Include="Models\DeviationModel.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +179,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
+    <Content Include="Scripts\deviation.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
       <DependentUpon>jquery-1.6.2.js</DependentUpon>
@@ -190,9 +195,6 @@
       <DependentUpon>jquery.unobtrusive-ajax.js</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js">
-      <DependentUpon>jquery.validate.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
@@ -233,26 +235,20 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Deviation\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Deviation\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\CustomValidators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
-      <Project>{38783e7f-9390-4860-a339-249d6f9d8a01}</Project>
-      <Name>Common.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Repository\Common.Repository.csproj">
-      <Project>{f070f3fb-e238-4c24-bd69-242481c1fa8f}</Project>
-      <Name>Common.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>
@@ -278,7 +274,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>37861</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:10627/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -31,23 +31,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerBootstrapper.cs" />
     <Compile Include="DeviationDataContext.cs" />
     <Compile Include="DeviationRepository.cs" />
+    <Compile Include="IDataContext.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Repository\Common.Repository.csproj">
-      <Project>{f070f3fb-e238-4c24-bd69-242481c1fa8f}</Project>
-      <Name>Common.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>

@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
-using Deviation.Web.Models.CustomValidators;
 
 namespace Deviation.Web.Models
 {
     public class DeviationModel : IModel
     {
+		[ScaffoldColumn(false)]
         public Guid DeviationId { get; set; }
 
         [DisplayName("Avvikelse")]
@@ -27,21 +27,22 @@ namespace Deviation.Web.Models
 
         [DisplayName("Slutdatum")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        [DateGreaterThan("ValidFrom")]
         public DateTime ValidTo { get; set; }
 
-        public IEnumerable<DeviationModel> DeviationList { get; set; }
 		
-        public IEnumerable<SelectListItem> DeviationTypes
+        public IEnumerable<DeviationType> DeviationTypes
         {
             get
             {
-                return new List<SelectListItem>
-                           {
-                               new SelectListItem {Text = "Timetable change", Value = "1"},
-                               new SelectListItem {Text = "Hotel renovation" , Value = "2"}
-                           };
+            	yield return new DeviationType {Name = "Timetable change", Id = 1};
+            	yield return new DeviationType {Name = "Hotel renovation", Id = 2};
             }
         }
     }
+
+	public class DeviationType
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+	}
 }
