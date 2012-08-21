@@ -19,7 +19,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.Logic", "OV.Logic\OV.Log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.Entitites", "OV.Entitites\OV.Entitites.csproj", "{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1FD85E20-E003-458D-A5A3-2C6CBDE62CCD}"
+	ProjectSection(SolutionItems) = preProject
+		DevPoc.vsmdi = DevPoc.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.Test", "OV.Test\OV.Test.csproj", "{5DBDB11C-25F1-4D85-930F-4296F1A92918}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DevPoc.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -61,6 +73,10 @@ Global
 		{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBDB11C-25F1-4D85-930F-4296F1A92918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBDB11C-25F1-4D85-930F-4296F1A92918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBDB11C-25F1-4D85-930F-4296F1A92918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBDB11C-25F1-4D85-930F-4296F1A92918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OV.Web.Models
 {
-	public class DeviationModel
+	public class DeviationModel : IModel
 	{
 		public Guid DeviationId { get; set; }
 

@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Deviation.Test
 {
     [TestClass]
-    public class MapperTest
+    public class MapperTests
     {
         [TestMethod]
         public void TestMapperMapToModel()
