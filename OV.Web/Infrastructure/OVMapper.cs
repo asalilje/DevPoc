@@ -1,4 +1,6 @@
-﻿using OV.Entitites;
+﻿using AutoMapper;
+using Common.Logic;
+using OV.Entitites;
 using OV.Web.Models;
 
 namespace OV.Web.Infrastructure
@@ -17,6 +19,15 @@ namespace OV.Web.Infrastructure
 			entity.DateInterval = dateInterval;
 
 			return entity;
+		}
+
+		public override DeviationModel MapToModel( Deviation entity)
+		{
+			Mapper.CreateMap<Deviation, DeviationModel>()
+				.ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
+				.ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo));
+			var model = Mapper.Map<Deviation, DeviationModel>(entity);
+			return model;
 		}
 	}
 }

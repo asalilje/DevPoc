@@ -59,6 +59,10 @@
     <Compile Include="RepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
+      <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
+      <Name>Common.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>

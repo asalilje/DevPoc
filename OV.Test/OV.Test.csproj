@@ -49,6 +49,10 @@
     <Compile Include="MapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
+      <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
+      <Name>Common.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OV.Entitites\OV.Entitites.csproj">
       <Project>{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}</Project>
       <Name>OV.Entitites</Name>

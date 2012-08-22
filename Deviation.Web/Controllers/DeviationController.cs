@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Deviation.Bus;
 using Deviation.Web.Infrastructure.Mappers;
 using Deviation.Web.Models;
 
@@ -26,6 +27,8 @@ namespace Deviation.Web.Controllers
 			var mapper = new DeviationMapper();
 			var entity = mapper.MapToEntity(model);
 			DeviationRepository.AddItem(entity);
+			var sender = new SenderEndpoint();
+			sender.SendDeviation(entity);
 			return RedirectToAction("Index", "Home");
 		}
 

@@ -29,7 +29,8 @@ namespace Deviation.Test
             var model = mapper.MapToModel(entity);
 
             Assert.AreEqual(entity.DeviationName, model.DeviationName);
-
+			Assert.AreEqual(entity.DateInterval.ValidFrom, model.ValidFrom);
+			Assert.AreEqual(entity.DateInterval.ValidTo, model.ValidTo);
 
         }
 
@@ -50,7 +51,8 @@ namespace Deviation.Test
 			var entity = mapper.MapToEntity(model);
 
 			Assert.AreEqual(entity.DeviationName, model.DeviationName);
-
+			Assert.AreEqual(entity.DateInterval.ValidFrom, model.ValidFrom);
+			Assert.AreEqual(entity.DateInterval.ValidTo, model.ValidTo);
 
 		}
     }

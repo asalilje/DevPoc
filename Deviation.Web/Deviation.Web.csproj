@@ -44,6 +44,9 @@
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NServiceBus.Host, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
@@ -142,8 +145,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Mappers\DeviationMapper.cs" />
-    <Compile Include="Infrastructure\Mappers\IGenericMapper.cs" />
-    <Compile Include="Infrastructure\Mappers\GenericMapper.cs" />
     <Compile Include="Models\DeviationModel.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,6 +250,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
+      <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
+      <Name>Common.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deviation.Bus\Deviation.Bus.csproj">
+      <Project>{29230ECE-9A78-4FB0-BD33-F8A451C9BD15}</Project>
+      <Name>Deviation.Bus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>

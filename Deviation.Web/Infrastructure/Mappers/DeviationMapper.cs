@@ -1,4 +1,6 @@
-﻿using Deviation.Entities;
+﻿using AutoMapper;
+using Common.Logic;
+using Deviation.Entities;
 using Deviation.Web.Models;
 
 namespace Deviation.Web.Infrastructure.Mappers
@@ -22,7 +24,10 @@ namespace Deviation.Web.Infrastructure.Mappers
 
         public override DeviationModel MapToModel(Entities.Deviation entity)
         {
-            var model = base.MapToModel(entity);
+			Mapper.CreateMap<Entities.Deviation, DeviationModel>()
+				.ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
+				.ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo));
+			var model = Mapper.Map<Entities.Deviation, DeviationModel>(entity);
             return model;
         }
 
