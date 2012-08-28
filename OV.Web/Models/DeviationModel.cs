@@ -7,7 +7,7 @@ namespace OV.Web.Models
 {
 	public class DeviationModel : IModel
 	{
-		public Guid DeviationId { get; set; }
+		public Guid Id { get; set; }
 
 		[DisplayName("Avvikelse")]
 		public string DeviationName { get; set; }

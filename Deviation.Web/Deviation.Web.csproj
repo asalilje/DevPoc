@@ -43,9 +43,15 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NServiceBus.Host, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <ExecutableExtension>.exe</ExecutableExtension>
+    <Reference Include="NServiceBus, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.3.2.7\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.3.2.7\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
@@ -144,6 +150,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Injection\ConfigureMvcDependecyInjection.cs" />
+    <Compile Include="Infrastructure\Injection\NServiceBusControllerActivator.cs" />
+    <Compile Include="Infrastructure\Injection\NServiceBusDependencyResolverAdapter.cs" />
     <Compile Include="Infrastructure\Mappers\DeviationMapper.cs" />
     <Compile Include="Models\DeviationModel.cs" />
     <Compile Include="Models\IModel.cs" />
@@ -254,9 +263,9 @@
       <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
       <Name>Common.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Deviation.Bus\Deviation.Bus.csproj">
-      <Project>{29230ECE-9A78-4FB0-BD33-F8A451C9BD15}</Project>
-      <Name>Deviation.Bus</Name>
+    <ProjectReference Include="..\Common.Messages\Common.Messages.csproj">
+      <Project>{FCA4E995-387A-47F1-AF17-1DD2CB216938}</Project>
+      <Name>Common.Messages</Name>
     </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>

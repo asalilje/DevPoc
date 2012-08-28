@@ -1,4 +1,7 @@
 ﻿using System;
+using AutoMapper;
+using Common.Logic;
+using Common.Messages.Commands;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OV.Entitites;
 using OV.Web.Infrastructure;
@@ -14,12 +17,9 @@ namespace OV.Test
 		{
 			var entity = new Deviation
 			{
-				DeviationId = Guid.NewGuid(),
-				DateInterval = new DateInterval
-				{
-					ValidFrom = DateTime.Now,
-					ValidTo = DateTime.Now.AddDays(12)
-				},
+				Id = Guid.NewGuid(),
+				ValidFrom = DateTime.Now,
+				ValidTo = DateTime.Now.AddDays(12),
 				DeviationTypeId = 1,
 				DeviationName = "Timetable change today"
 			};
@@ -27,8 +27,6 @@ namespace OV.Test
 			var model = mapper.MapToModel(entity);
 
 			Assert.AreEqual(entity.DeviationName, model.DeviationName);
-			Assert.AreEqual(entity.DateInterval.ValidFrom, model.ValidFrom);
-			Assert.AreEqual(entity.DateInterval.ValidTo, model.ValidTo);
 
 		}
 
@@ -42,15 +40,31 @@ namespace OV.Test
 				ValidTo = DateTime.Now.AddDays(12),
 				DeviationTypeId = 1,
 				DeviationName = "Timetable change today",
-				DeviationId = Guid.NewGuid()
+				Id = Guid.NewGuid()
 			};
 
 			var mapper = new OVMapper();
 			var entity = mapper.MapToEntity(model);
 
 			Assert.AreEqual(entity.DeviationName, model.DeviationName);
-			Assert.AreEqual(entity.DateInterval.ValidFrom, model.ValidFrom);
-			Assert.AreEqual(entity.DateInterval.ValidTo, model.ValidTo);
+
+		}
+
+		[TestMethod]
+		public void TestMapperMapCommandToEntity()
+		{
+			var command = new CreateDeviationCommand
+			              {
+			              		ValidFrom = DateTime.Now,
+			              		ValidTo = DateTime.Now.AddDays(12),
+			              		DeviationTypeId = 1,
+			              		DeviationName = "Timetable change today",
+			              		Id = Guid.NewGuid()
+			              };
+
+			Mapper.CreateMap<CreateDeviationCommand, Deviation>();
+			var model = Mapper.Map<CreateDeviationCommand, Deviation>(command);
+			Assert.AreEqual(model.DeviationName, command.DeviationName);
 
 		}
 	}

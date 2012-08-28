@@ -2,6 +2,8 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using Deviation.Logic;
+using Deviation.Web.Infrastructure.Injection;
+using NServiceBus;
 
 namespace Deviation.Web
 {
@@ -19,6 +21,21 @@ namespace Deviation.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             ContainerBootstrapper.BootstrapStructuremap();
+
+			// NServiceBus configuration
+			Configure.With()
+				.DefaultBuilder()
+				.ForMvc()
+				.XmlSerializer()
+				.Log4Net()
+				.MsmqTransport()
+					.IsTransactional(false)
+					.PurgeOnStartup(true)
+				.UnicastBus()
+					.ImpersonateSender(false)
+				.CreateBus()
+				.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+
         }
     }
 }

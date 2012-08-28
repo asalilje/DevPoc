@@ -1,43 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using OV.Dal;
+using OV.Entitites;
 using OV.Web.Infrastructure;
 using OV.Web.Models;
+using PagedList;
 
 namespace OV.Web.Controllers
 {
-	public class HomeController : RepositoryController
+	public class HomeController : UnitOfWorkController
 	{
-		public ActionResult Index()
+
+		public ActionResult Index(int? page)
 		{
 			ViewBag.Message = "Worklist";
 
-			var model = new DeviationModel
-			            {
-			            	DeviationId = Guid.NewGuid(),
-			            	DeviationName = "Test",
-			            	DeviationTypeId = 1,
-			            	ValidFrom = DateTime.Now,
-			            	ValidTo = DateTime.Now
-			            };
-
-			var mapper = new OVMapper();
-			var entity = mapper.MapToEntity(model);
-			OVRepository.AddItem(entity);
-
 			var list = GetWorklist();
 
-			return View(list);
+			const int pageSize = 3;
+			var pageNumber = page ?? 1;
+
+			return View(list.ToPagedList(pageNumber, pageSize));
 		}
 
 		private IEnumerable<DeviationModel> GetWorklist()
 		{
-			var entities = OVRepository.GetItems();
+			var entities = UnitOfWork.DeviationRepository.GetItems().ToList();
 			var mapper = new OVMapper();
-			var model = entities.Select(mapper.MapToModel);
-			return model;
+			return entities.ToList().Select(mapper.MapToModel).ToList();
 		}
 
 	}

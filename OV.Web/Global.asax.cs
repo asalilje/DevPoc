@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using OV.Logic;
+using OV.Dal;
 
 namespace OV.Web
 {
@@ -23,7 +19,7 @@ namespace OV.Web
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-			ContainerBootstrapper.BootstrapStructuremap();
+			Database.SetInitializer<OVDbContext>(null);
 		}
 	}
 }

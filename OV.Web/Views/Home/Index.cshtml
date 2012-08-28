@@ -1,7 +1,10 @@
-﻿@model IEnumerable<OV.Web.Models.DeviationModel>
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<OV.Web.Models.DeviationModel>
 @{
     ViewBag.Title = "OV";
 }
+@Styles.Render("~/Content/PagedList.css")
 
 @section featured {
     <section class="featured">
@@ -26,16 +29,25 @@
 	</thead>
 	
 	<tbody>
-	@foreach(var item in Model)
-	{
-		<tr>
-			<td>@item.DeviationName</td>
-			<td>@item.DeviationTypes.Single(x => x.Id == item.DeviationTypeId).Name</td>
-			<td>@item.ValidFrom</td>
-			<td>@item.ValidTo</td>
-		</tr>
-	}
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>@item.DeviationName</td>
+				<td>@item.DeviationTypes.Single(x => x.Id == item.DeviationTypeId).Name</td>
+				<td>@item.ValidFrom</td>
+				<td>@item.ValidTo</td>
+			</tr>
+		}
 	</tbody>
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page}), 
+	new PagedListRenderOptions
+	{
+		LinkToFirstPageFormat = "<<", 
+		LinkToNextPageFormat = ">",
+		LinkToLastPageFormat = ">>",
+		LinkToPreviousPageFormat = "<"
+	})
 
 <br/><br/>

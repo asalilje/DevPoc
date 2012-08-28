@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Deviation.Logic;
+using NServiceBus;
 using StructureMap;
 
 namespace Deviation.Web.Controllers
@@ -9,6 +10,7 @@ namespace Deviation.Web.Controllers
 
 		public IRepository<Entities.Deviation> DeviationRepository { get; private set; }
 
+    	
     	protected RepositoryController()
     	{
 			DeviationRepository = ObjectFactory.GetInstance<IRepository<Entities.Deviation>>();

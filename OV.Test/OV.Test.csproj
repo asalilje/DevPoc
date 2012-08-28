@@ -33,7 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NServiceBus">
+      <HintPath>..\packages\NServiceBus.3.2.7\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,6 +57,10 @@
       <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
       <Name>Common.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.Messages\Common.Messages.csproj">
+      <Project>{FCA4E995-387A-47F1-AF17-1DD2CB216938}</Project>
+      <Name>Common.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OV.Entitites\OV.Entitites.csproj">
       <Project>{4C8423BC-F48D-4E20-B504-BBB8FA32FCA8}</Project>
       <Name>OV.Entitites</Name>
@@ -61,6 +69,9 @@
       <Project>{EF3B7C25-D367-4390-91DE-EF175CFE3591}</Project>
       <Name>OV.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
