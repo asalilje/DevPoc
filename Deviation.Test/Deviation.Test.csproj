@@ -67,9 +67,9 @@
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Deviation.Logic\Deviation.Logic.csproj">
+    <ProjectReference Include="..\Deviation.Dal\Deviation.Dal.csproj">
       <Project>{9AE21BAA-9256-472F-9F7E-E6C94433197D}</Project>
-      <Name>Deviation.Logic</Name>
+      <Name>Deviation.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Deviation.Web\Deviation.Web.csproj">
       <Project>{399b32b1-e05d-4564-96c4-1edd8a079910}</Project>

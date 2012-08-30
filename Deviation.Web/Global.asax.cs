@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Deviation.Logic;
+using Deviation.Dal;
 using Deviation.Web.Infrastructure.Injection;
 using NServiceBus;
 

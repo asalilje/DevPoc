@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Deviation.Entities;
-using Deviation.Logic;
+using Deviation.Dal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StructureMap;
 

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Deviation.Logic;
+using Deviation.Dal;
 using NServiceBus;
 using StructureMap;
 
