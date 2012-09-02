@@ -12,7 +12,7 @@ namespace Deviation.Web.Infrastructure.Mappers
         {
             var entity = base.MapToEntity(model);
 			
-			var dateInterval = new DateInterval
+            var dateInterval = new DateInterval
 			                       {
 			                           ValidFrom = model.ValidFrom, 
 			                           ValidTo = model.ValidTo
@@ -24,9 +24,9 @@ namespace Deviation.Web.Infrastructure.Mappers
 
         public override DeviationModel MapToModel(Entities.Deviation entity)
         {
-			Mapper.CreateMap<Entities.Deviation, DeviationModel>()
-				.ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
-				.ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo));
+            Mapper.CreateMap<Entities.Deviation, DeviationModel>()
+                .ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
+                .ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo));
 			var model = Mapper.Map<Entities.Deviation, DeviationModel>(entity);
             return model;
         }

@@ -8,8 +8,12 @@ namespace Deviation.Dal
         {
             ObjectFactory.Initialize(reg =>
                                          {
-                                             reg.ForSingletonOf<IDataContext<Entities.Deviation>>().Add<DeviationDataContext>();
-                                             reg.For<IRepository<Entities.Deviation>>().Add<DeviationRepository>().Ctor<IDataContext<Entities.Deviation>>();
+                                             reg.ForSingletonOf<IDataContext<Entities.Deviation>>()
+                                                 .Use<DeviationDataContext>();
+                                             reg.For<IRepository<Entities.Deviation>>()
+                                                 .Use<DeviationRepository>()
+                                                 .Ctor<IDataContext<Entities.Deviation>>()
+                                                 .IsTheDefault();
                                          });
         }
         

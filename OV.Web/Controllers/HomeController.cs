@@ -27,7 +27,7 @@ namespace OV.Web.Controllers
 
 		private IEnumerable<DeviationModel> GetWorklist()
 		{
-			var entities = UnitOfWork.DeviationRepository.GetItems().ToList();
+			var entities = UnitOfWork.DeviationRepository.GetItems().OrderByDescending(o => o.ValidFrom).ThenBy(o => o.DeviationName).ToList();
 			var mapper = new OVMapper();
 			return entities.ToList().Select(mapper.MapToModel).ToList();
 		}

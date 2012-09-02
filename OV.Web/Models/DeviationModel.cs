@@ -32,6 +32,8 @@ namespace OV.Web.Models
 				yield return new DeviationType { Name = "Hotel renovation", Id = 2 };
 			}
 		}
+
+        public string Status { get; set; }
 	}
 	
 	public class DeviationType

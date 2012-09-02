@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookingSelection.Web.Models.BookingModel>
+
+@{
+    ViewBag.Title = "Sök";
+}
+
+<h2>Sökresultat</h2>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Bokningsnummer</th>
+            <th>Bokningstyp</th>
+            <th>Välj</th>
+        </tr>
+    </thead>
+
+    @using (Html.BeginForm("CreateSelection", "Home"))   {
+
+        foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingNumber)
+                </td>
+                <td>
+                    @item.BookingTypes.Single(type => type.Id == item.BookingTypeId).Name
+                </td>
+                <td>
+                    <input type="checkbox" value="@item.BookingId" name="BookingId" />
+                </td>
+            </tr>
+        }
+        
+        <tr>
+
+            <td colspan="3">
+                @Html.HiddenFor(model => model.First().DeviationId)
+                <input type="submit" value="Välj bokningar" />
+            </td>
+        </tr>
+        
+    }    
+
+</table>
+
+<br /><br />
+
+<div>
+    @Html.ActionLink("Tillbaka", "Index", "Home")
+</div>

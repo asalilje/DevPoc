@@ -17,7 +17,7 @@ namespace Deviation.Dal
 
         public Entities.Deviation GetItemById(Guid id)
         {
-            return _dataContext.Collection.FirstOrDefault(item => item.DeviationId == id);
+            return _dataContext.Collection.SingleOrDefault(item => item.DeviationId == id);
         }
 
         public IEnumerable<Entities.Deviation> GetItems()
@@ -43,7 +43,7 @@ namespace Deviation.Dal
 
         public void RemoveItem(Guid id)
         {
-            _dataContext.Collection.Remove(_dataContext.Collection.FirstOrDefault(deviation => deviation.DeviationId == id));
+            _dataContext.Collection.Remove(_dataContext.Collection.SingleOrDefault(deviation => deviation.DeviationId == id));
         }
 
     }

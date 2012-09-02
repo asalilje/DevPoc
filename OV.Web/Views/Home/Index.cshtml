@@ -22,11 +22,14 @@
 
 <table>
 	<thead>
-		<th>Namn</th>
-		<th>Typ</th>
-		<th>Giltig från</th>
-		<th>Giltig till</th>
-	</thead>
+        <tr>
+		    <th>Namn</th>
+		    <th>Typ</th>
+		    <th>Giltig från</th>    
+		    <th>Giltig till</th>
+            <th>Status</th>
+	    </tr>
+    </thead>
 	
 	<tbody>
 		@foreach(var item in Model)
@@ -34,8 +37,9 @@
 			<tr>
 				<td>@item.DeviationName</td>
 				<td>@item.DeviationTypes.Single(x => x.Id == item.DeviationTypeId).Name</td>
-				<td>@item.ValidFrom</td>
-				<td>@item.ValidTo</td>
+				<td>@Html.DisplayFor(modelItem => item.ValidFrom)</td>
+				<td>@Html.DisplayFor(modelItem => item.ValidTo)</td>
+                <td>@item.Status</td>
 			</tr>
 		}
 	</tbody>

@@ -29,6 +29,8 @@ namespace Deviation.Web.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime ValidTo { get; set; }
 
+        [DisplayName("Bokningar")]
+        public IEnumerable<Guid> Bookings { get; set; }
 		
         public IEnumerable<DeviationType> DeviationTypes
         {
@@ -45,4 +47,5 @@ namespace Deviation.Web.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 	}
+
 }

@@ -32,6 +32,9 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.ValidTo)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bookings)
+            </th>
 			<th></th>
 			<th></th>
         </tr>
@@ -51,12 +54,9 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.ValidTo)
                 </td>
+                <td>@(item.Bookings.Any() ? "Bokningar finns" : "Inga bokningar")</td>
 				<td>
-					@using (Html.BeginForm("Delete", "Home"))
-					{
-						@Html.Hidden("DeviationId", item.DeviationId)
-						<input type="submit" value="Ta bort"/>
-					}
+					<a href="http://localhost:24223?DeviationId=@(item.DeviationId)" target="_blank">Lägg till bokningar</a> 
 				</td>
 				<td>
 					@using(Html.BeginForm("Edit", "Deviation", FormMethod.Get))

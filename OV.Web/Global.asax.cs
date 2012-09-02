@@ -19,7 +19,7 @@ namespace OV.Web
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-			Database.SetInitializer<OVDbContext>(null);
+			Database.SetInitializer<OVDbContext>(new OVDbInitializer());
 		}
 	}
 }

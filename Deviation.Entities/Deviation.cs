@@ -12,5 +12,8 @@ namespace Deviation.Entities
         public string DeviationName { get; set; }
         public int DeviationTypeId { get; set; }
         public DateInterval DateInterval { get; set; }
+
+        public IEnumerable<Guid> Bookings { get; set; }
+
     }
 }
