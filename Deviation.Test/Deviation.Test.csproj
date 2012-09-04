@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0-rc\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>

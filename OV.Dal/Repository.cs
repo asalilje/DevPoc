@@ -29,10 +29,10 @@ namespace OV.Dal
 
 		public IQueryable<T> GetItemsByFilter(Expression<Func<T, bool>> filter)
 		{
-			return GetItems().Where(filter);
+			return GetItems().Where(filter).AsQueryable();
 		}
 
-		public T GetItem(int id)
+		public T GetItem(Guid id)
 		{
 			return DbSet.Find(id);
 		}
@@ -49,7 +49,7 @@ namespace OV.Dal
 			DbSet.Add(item);
 		}
 
-		public void RemoveItem(int id)
+		public void RemoveItem(Guid id)
 		{
 			var item = DbSet.Find(id);
 			RemoveItem(item);

@@ -14,7 +14,7 @@ namespace Deviation.Test
         [TestInitialize]
         public void TestInit()
         {
-            ContainerBootstrapper.BootstrapStructuremap();
+			new ContainerBootstrapper().BootstrapStructureMap();
         }
 
         public IRepository<Entities.Deviation> Repository
@@ -70,7 +70,7 @@ namespace Deviation.Test
         {
             var deviation = CreateDeviation();
             Repository.AddItem(deviation);
-            var item = Repository.GetItemById(deviation.DeviationId);
+            var item = Repository.GetItem(deviation.DeviationId);
 
             Assert.AreEqual(deviation, item);
         }
@@ -82,7 +82,7 @@ namespace Deviation.Test
             for (var i = 0; i < count; i++)
                 Repository.AddItem(CreateDeviation(i));
 
-            var items = Repository.GetItemsByQuery(deviation => deviation.DeviationTypeId == 3);
+            var items = Repository.GetItemsByFilter(deviation => deviation.DeviationTypeId == 3);
             Assert.AreEqual(1, items.Count());
         }
 

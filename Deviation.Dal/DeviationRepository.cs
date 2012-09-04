@@ -1,51 +1,94 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Deviation.Dal
 {
+	public class DeviationRepository : IRepository<Entities.Deviation>
+	{
 
-    public class DeviationRepository : IRepository<Entities.Deviation>
-    {
+		private DeviationDbContext _dbContext;
 
-        private readonly IDataContext<Entities.Deviation> _dataContext;
+		private IDbSet<Entities.Deviation> DbSet { get { return _dbContext.Deviation; } }
 
-        public DeviationRepository(IDataContext<Entities.Deviation> dataContext)
-        {
-            _dataContext = dataContext;
-        }
+		public DeviationRepository(DeviationDbContext dbContext)
+		{
+			_dbContext = dbContext;
+		}
 
-        public Entities.Deviation GetItemById(Guid id)
-        {
-            return _dataContext.Collection.SingleOrDefault(item => item.DeviationId == id);
-        }
+		public Entities.Deviation GetItem(Guid id)
+		{
+			return DbSet.Find(id);
+		}
 
-        public IEnumerable<Entities.Deviation> GetItems()
-        {
-            return _dataContext.Collection;
-        }
+		public IQueryable<Entities.Deviation> GetItems()
+		{
+			return DbSet.AsQueryable();
+		}
+
+		public IQueryable<Entities.Deviation> GetItemsByFilter(Expression<Func<Entities.Deviation, bool>> filter)
+		{
+			return GetItems().Where(filter).AsQueryable();
+		}
+
+		public void AddItem(Entities.Deviation item)
+		{
+			DbSet.Add(item);
+		}
+
+		public void RemoveItem(Guid id)
+		{
+			var item = DbSet.Find(id);
+			RemoveItem(item);
+		}
 
 
-        public IEnumerable<Entities.Deviation> GetItemsByQuery(Func<Entities.Deviation, bool> filter)
-        {
-            return _dataContext.Collection.Where(filter);
-        }
+		public void RemoveItem(Entities.Deviation item)
+		{
+			var entry = _dbContext.Entry(item);
+			if(entry.State == EntityState.Detached)
+				DbSet.Attach(item);
+			DbSet.Remove(item);
+		}
 
 
-        public void AddItem(Entities.Deviation item)
-        {
-			if(_dataContext.Collection.Any(deviation => deviation.DeviationId == item.DeviationId))
-				_dataContext.Collection.Remove(_dataContext.Collection.Single(deviation => deviation.DeviationId == item.DeviationId));
+		public void UpdateItem(Entities.Deviation item)
+		{
+			DbSet.Attach(item);
+			var entry = _dbContext.Entry(item);
+			entry.State = EntityState.Modified;
+		}
 
-			_dataContext.Collection.Add(item);
-        }
+		public void Save()
+		{
+			_dbContext.SaveChanges();
+		}
 
 
-        public void RemoveItem(Guid id)
-        {
-            _dataContext.Collection.Remove(_dataContext.Collection.SingleOrDefault(deviation => deviation.DeviationId == id));
-        }
+		private bool _disposed;
 
-    }
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
+		protected virtual void Dispose(bool disposing)
+		{
+			if(_disposed)
+				return;
+
+			if(!disposing)
+				return;
+
+			if(_dbContext == null)
+				return;
+
+			_dbContext.Dispose();
+			_dbContext = null;
+			_disposed = true;
+		}
+	}
 }

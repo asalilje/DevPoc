@@ -32,6 +32,7 @@ namespace Deviation.Web.Controllers
 			var mapper = new DeviationMapper();
 			var entity = mapper.MapToEntity(model);
 			DeviationRepository.AddItem(entity);
+			DeviationRepository.Save();
 			Bus.Send<CreateDeviationCommand>(cmd =>
 			                                 {
 			                                 	cmd.Id = entity.DeviationId;
@@ -49,7 +50,7 @@ namespace Deviation.Web.Controllers
 		[HttpGet]
 		public ActionResult Edit(Guid deviationId)
 		{
-			var entity = DeviationRepository.GetItemById(deviationId);
+			var entity = DeviationRepository.GetItem(deviationId);
 			var mapper = new DeviationMapper();
 			var model = mapper.MapToModel(entity);
 			return View(model);
@@ -64,6 +65,7 @@ namespace Deviation.Web.Controllers
 			var mapper = new DeviationMapper();
 			var entity = mapper.MapToEntity(model);
 			DeviationRepository.AddItem(entity);
+			DeviationRepository.Save();
 
             Bus.Send<UpdateDeviationCommand>(cmd =>
             {

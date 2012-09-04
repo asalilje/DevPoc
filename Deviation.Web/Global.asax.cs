@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Deviation.Dal;
@@ -20,7 +21,9 @@ namespace Deviation.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ContainerBootstrapper.BootstrapStructuremap();
+			Database.SetInitializer(new DeviationDbInitializer());
+
+            new ContainerBootstrapper().BootstrapStructureMap();
 
 			// NServiceBus configuration
 			Configure.With()

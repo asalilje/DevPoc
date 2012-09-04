@@ -13,16 +13,7 @@ namespace Deviation.Bus
     {
         public void Handle(AddBookingsCommand message)
         {
-            ObjectFactory.Configure(x =>
-            {
-                x.Scan(scan =>
-                {
-                    scan.LookForRegistries();
-                    scan.Assembly("Deviation.Dal");
-                });
-            });
-
-            var repository = ObjectFactory.GetInstance<IDataContext<Entities.Deviation>>();
+            
         }
     }
 }

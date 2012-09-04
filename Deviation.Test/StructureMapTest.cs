@@ -16,14 +16,9 @@ namespace Deviation.Test
         [TestMethod]
         public void TestRegistry()   {
         
-            ObjectFactory.Initialize(reg =>
-                                         {
-                                             reg.ForSingletonOf<IDataContext<Entities.Deviation>>()
-                                                 .Use<DeviationDataContext>();
-                                             reg.ForSingletonOf<IRepository<Entities.Deviation>>()
-                                                 .Use<DeviationRepository>()
-                                                 .Ctor<IDataContext<Entities.Deviation>>();
-                                         });
+             ObjectFactory.Initialize(reg => reg.For<IRepository<Entities.Deviation>>()
+                                            	.Use<DeviationRepository>()
+                                            	.Ctor<DeviationDbContext>());
 
             ObjectFactory.AssertConfigurationIsValid();
     

@@ -18,14 +18,6 @@ namespace Deviation.Web.Controllers
         }
 
 
-
-        [HttpPost]
-        public ActionResult Delete(Guid deviationId)
-        {
-			DeviationRepository.RemoveItem(deviationId);
-            return RedirectToAction("Index");
-        }
-
         private IEnumerable<DeviationModel> GetDeviationList()
         {
             var deviationList = DeviationRepository.GetItems();

@@ -16,5 +16,10 @@ namespace Deviation.Web.Controllers
 			DeviationRepository = ObjectFactory.GetInstance<IRepository<Entities.Deviation>>();
     	}
 
+		protected override void OnActionExecuted(ActionExecutedContext filterContext)
+		{
+			DeviationRepository.Dispose();
+		}
+
     }
 }
