@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Deviation.Entities;
 using Deviation.Web.Infrastructure.Mappers;
@@ -14,7 +15,10 @@ namespace Deviation.Test
         [TestMethod]
         public void TestMapperMapToModel()
         {
-            var entity = new Entities.Deviation
+
+        	var bookings = new Collection<Booking> {new Booking {BookingId = Guid.NewGuid()}};
+
+        	var entity = new Entities.Deviation
                              {
 								 DeviationId = Guid.NewGuid(),
                                  DateInterval = new DateInterval
@@ -23,7 +27,8 @@ namespace Deviation.Test
                                                         ValidTo = DateTime.Now.AddDays(12)
                                                     },
                                  DeviationTypeId = 1,
-                                 DeviationName = "Timetable change today"
+                                 DeviationName = "Timetable change today",
+								 Bookings = bookings
                              };
             var mapper = new DeviationMapper();
             var model = mapper.MapToModel(entity);

@@ -13,6 +13,7 @@
         </div>
     </section>
 }
+
 <h3>Registrerade avvikelser:</h3>
 
 @if (Model == null || !Model.Any()) { <text>Inga avvikelser</text>   }
@@ -33,7 +34,7 @@ else
                 @Html.DisplayNameFor(model => model.ValidTo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Bookings)
+                @Html.DisplayNameFor(model => model.HasBookings)
             </th>
 			<th></th>
 			<th></th>
@@ -54,9 +55,9 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.ValidTo)
                 </td>
-                <td>@(item.Bookings.Any() ? "Bokningar finns" : "Inga bokningar")</td>
+                <td>@(item.HasBookings ? "Bokningar finns" : "Inga bokningar")</td>
 				<td>
-					<a href="http://localhost:24223?DeviationId=@(item.DeviationId)" target="_blank">Lägg till bokningar</a> 
+					<a href="http://localhost:1339?DeviationId=@(item.DeviationId)" target="_blank">Lägg till bokningar</a> 
 				</td>
 				<td>
 					@using(Html.BeginForm("Edit", "Deviation", FormMethod.Get))
@@ -77,10 +78,6 @@ else
 <br/><br/>
 
 @Html.ActionLink("Skapa avvikelse", "Create", "Deviation")
-
-
-
-
 <br/><br/>
 <br/><br/>
 <br/><br/>

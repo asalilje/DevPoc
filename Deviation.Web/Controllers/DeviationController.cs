@@ -10,7 +10,6 @@ namespace Deviation.Web.Controllers
 {
 	public class DeviationController : RepositoryController
 	{
-
 		public IBus Bus { get; set; }
 
 		[HttpGet]
@@ -40,10 +39,10 @@ namespace Deviation.Web.Controllers
 			                                 	cmd.DeviationTypeId = entity.DeviationTypeId;
 			                                 	cmd.ValidFrom = entity.DateInterval.ValidFrom;
 			                                 	cmd.ValidTo = entity.DateInterval.ValidTo;
-                                                cmd.Status = DeviationStatus.Created;
+			                                 	cmd.Status = DeviationStatus.Created;
 			                                 }
 				);
-			
+
 			return RedirectToAction("Index", "Home");
 		}
 
@@ -61,21 +60,21 @@ namespace Deviation.Web.Controllers
 		{
 			if(!ModelState.IsValid)
 				return View(model);
-			
+
 			var mapper = new DeviationMapper();
 			var entity = mapper.MapToEntity(model);
-			DeviationRepository.AddItem(entity);
+			DeviationRepository.UpdateItem(entity);
 			DeviationRepository.Save();
 
-            Bus.Send<UpdateDeviationCommand>(cmd =>
-            {
-                cmd.Id = entity.DeviationId;
-                cmd.DeviationName = entity.DeviationName;
-                cmd.DeviationTypeId = entity.DeviationTypeId;
-                cmd.ValidFrom = entity.DateInterval.ValidFrom;
-                cmd.ValidTo = entity.DateInterval.ValidTo;
-                cmd.Status = DeviationStatus.Updated;
-            });
+			Bus.Send<UpdateDeviationCommand>(cmd =>
+			                                 {
+			                                 	cmd.Id = entity.DeviationId;
+			                                 	cmd.DeviationName = entity.DeviationName;
+			                                 	cmd.DeviationTypeId = entity.DeviationTypeId;
+			                                 	cmd.ValidFrom = entity.DateInterval.ValidFrom;
+			                                 	cmd.ValidTo = entity.DateInterval.ValidTo;
+			                                 	cmd.Status = DeviationStatus.Updated;
+			                                 });
 			return RedirectToAction("Index", "Home");
 		}
 	}

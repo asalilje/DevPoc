@@ -22,7 +22,7 @@ namespace Deviation.Web.Controllers
         {
             var deviationList = DeviationRepository.GetItems();
             var mapper = new DeviationMapper();
-            var deviationModelList = deviationList.ToList().Select(mapper.MapToModel);
+            var deviationModelList = deviationList.ToList().Select(mapper.MapToModel).ToList();
             return deviationModelList;
         }
     }

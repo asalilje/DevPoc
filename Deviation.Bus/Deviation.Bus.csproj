@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -53,6 +54,7 @@
     <Compile Include="BookingCommandHandler.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>
       <Name>Deviation.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deviation.Web\Deviation.Web.csproj">
+      <Project>{399B32B1-E05D-4564-96C4-1EDD8A079910}</Project>
+      <Name>Deviation.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Deviation.Entities
 {
@@ -12,8 +10,7 @@ namespace Deviation.Entities
         public string DeviationName { get; set; }
         public int DeviationTypeId { get; set; }
         public DateInterval DateInterval { get; set; }
-
-        public IEnumerable<Guid> Bookings { get; set; }
-
+    	public virtual ICollection<Booking> Bookings { get; set; }
+		
     }
 }

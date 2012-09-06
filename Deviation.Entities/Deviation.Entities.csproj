@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs" />
     <Compile Include="Deviation.cs" />
     <Compile Include="DateInterval.cs" />
     <Compile Include="DeviationType.cs" />

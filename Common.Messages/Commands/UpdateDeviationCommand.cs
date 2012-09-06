@@ -11,5 +11,6 @@ namespace Common.Messages.Commands
 		public DateTime ValidTo { get; set; }
 		public int DeviationTypeId { get; set; }
         public DeviationStatus Status {get; set;}
+		public byte Type { get; set; }
     }
 }

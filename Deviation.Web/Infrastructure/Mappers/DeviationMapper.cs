@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using Common.Logic;
 using Deviation.Entities;
 using Deviation.Web.Models;
@@ -24,9 +25,10 @@ namespace Deviation.Web.Infrastructure.Mappers
 
         public override DeviationModel MapToModel(Entities.Deviation entity)
         {
-            Mapper.CreateMap<Entities.Deviation, DeviationModel>()
-                .ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
-                .ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo));
+        	Mapper.CreateMap<Entities.Deviation, DeviationModel>()
+        		.ForMember(dest => dest.ValidFrom, opt => opt.MapFrom(src => src.DateInterval.ValidFrom))
+        		.ForMember(dest => dest.ValidTo, opt => opt.MapFrom(src => src.DateInterval.ValidTo))
+        		.ForMember(dest => dest.HasBookings, opt => opt.MapFrom(src => src.Bookings != null && src.Bookings.Any()));
 			var model = Mapper.Map<Entities.Deviation, DeviationModel>(entity);
             return model;
         }

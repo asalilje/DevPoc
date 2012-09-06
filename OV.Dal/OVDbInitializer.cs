@@ -2,7 +2,7 @@
 
 namespace OV.Dal
 {
-    public class OVDbInitializer : DropCreateDatabaseIfModelChanges<OVDbContext>
+	public class OVDbInitializer : CreateDatabaseIfNotExists<OVDbContext>
 	{
 		 
 	}

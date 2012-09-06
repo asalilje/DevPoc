@@ -5,3 +5,4 @@
 	$(":input[data-datepicker]").datepicker();
 
 });
+

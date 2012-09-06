@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookingSelection.Web.Infrastructure;
 using BookingSelection.Web.Infrastructure.Mappers;
 using BookingSelection.Web.Models;
+using Common.Messages;
 using Common.Messages.Commands;
 using NServiceBus;
 
@@ -35,14 +37,22 @@ namespace BookingSelection.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateSelection(Guid[] BookingId, string DeviationId)
+        public ActionResult CreateSelection(Guid[] bookingId, string deviationId)
         {
+        	var bookings = new Collection<Common.Messages.Booking>();
+
+			foreach(var id in bookingId)
+			{
+				bookings.Add(new Booking {BookingId = id});
+			}
+
             var command = new AddBookingsCommand
             {
-                Bookings = BookingId.ToList(),
-                DeviationId = Guid.Parse(DeviationId)
+                Bookings = bookings,
+                DeviationId = Guid.Parse(deviationId)
             };
-            Bus.Send(command);
+            
+			Bus.Send(command);
             ViewBag.Saved = "Sparat!";
             return RedirectToAction("Index", "Home");
         }

@@ -39,8 +39,10 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0-rc\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL" />
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -66,6 +68,10 @@
     <ProjectReference Include="..\Common.Logic\Common.Logic.csproj">
       <Project>{6F2BCB0E-D5AE-4DDF-9CEB-9744B132024D}</Project>
       <Name>Common.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Messages\Common.Messages.csproj">
+      <Project>{FCA4E995-387A-47F1-AF17-1DD2CB216938}</Project>
+      <Name>Common.Messages</Name>
     </ProjectReference>
     <ProjectReference Include="..\Deviation.Entities\Deviation.Entities.csproj">
       <Project>{959694bf-48dd-42e3-87e7-a07dbc2f19c9}</Project>

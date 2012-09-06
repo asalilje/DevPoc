@@ -45,6 +45,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs" />
     <Compile Include="Commands\AddBookingsCommand.cs" />
     <Compile Include="Commands\UpdateDeviationCommand.cs" />
     <Compile Include="Commands\CreateDeviationCommand.cs" />

@@ -30,7 +30,7 @@ namespace Deviation.Web.Models
         public DateTime ValidTo { get; set; }
 
         [DisplayName("Bokningar")]
-        public IEnumerable<Guid> Bookings { get; set; }
+        public bool HasBookings { get; set; }
 		
         public IEnumerable<DeviationType> DeviationTypes
         {
