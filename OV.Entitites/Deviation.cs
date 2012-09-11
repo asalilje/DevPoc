@@ -12,5 +12,6 @@ namespace OV.Entitites
 		public DateTime ValidFrom { get; set; }
 		public DateTime ValidTo { get; set; }
         public string Status { get; set; }
+		public bool HasBookings { get; set; }
 	}
 }

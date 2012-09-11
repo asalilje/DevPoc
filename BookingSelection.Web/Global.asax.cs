@@ -41,6 +41,7 @@ namespace BookingSelection.Web
                     .PurgeOnStartup(true)
                 .UnicastBus()
                     .ImpersonateSender(false)
+				.MsmqSubscriptionStorage()
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
         }

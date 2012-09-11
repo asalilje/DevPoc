@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Common.Messages;
 using Common.Messages.Commands;
@@ -74,6 +75,7 @@ namespace Deviation.Web.Controllers
 			                                 	cmd.ValidFrom = entity.DateInterval.ValidFrom;
 			                                 	cmd.ValidTo = entity.DateInterval.ValidTo;
 			                                 	cmd.Status = DeviationStatus.Updated;
+			                                 	cmd.HasBookings = model.HasBookings;
 			                                 });
 			return RedirectToAction("Index", "Home");
 		}

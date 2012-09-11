@@ -63,6 +63,7 @@ else
 					@using(Html.BeginForm("Edit", "Deviation", FormMethod.Get))
 					{
 						@Html.Hidden("DeviationId", item.DeviationId)
+						@Html.Hidden("HasBookings", item.HasBookings)
 						<input type="submit" value="Ändra"/>
 					}
                 </td>

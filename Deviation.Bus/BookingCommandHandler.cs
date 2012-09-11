@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Common.Messages.Commands;
 using Deviation.Dal;
@@ -8,8 +9,12 @@ namespace Deviation.Bus
 {
     public class BookingCommandHandler : IHandleMessages<AddBookingsCommand>
     {
+
+    	public IBus Bus { get; set; }
+
         public void Handle(AddBookingsCommand message)
         {
+			Console.WriteLine("Handling message " + message.GetType().Name + " for deviationId " + message.DeviationId);
 
 			using(var deviationContext = new DeviationDbContext())
 			{
@@ -19,7 +24,7 @@ namespace Deviation.Bus
 				{
 					var bookingList = deviation.Bookings ?? new Collection<Entities.Booking>();
 					message.Bookings.ToList().ForEach(item => bookingList.Add(
-						new Entities.Booking {BookingId = item.BookingId}
+						new Entities.Booking {BookingGuid = item.BookingId}
 						));
 					deviation.Bookings = bookingList;
 					deviationRepository.UpdateItem(deviation);
@@ -27,6 +32,9 @@ namespace Deviation.Bus
 				}	
 				deviationRepository.Dispose();
         	}
+
+			// skickar vidare till OV
+        	Bus.Send(message);
 
         }
     }

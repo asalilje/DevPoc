@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Common.Messages;
 using Common.Messages.Commands;
 using NServiceBus;
@@ -13,6 +14,8 @@ namespace OV.Bus
 
 		public void Handle(CreateDeviationCommand command)
 		{
+			Console.WriteLine("Handling message " + command.GetType().Name + " for deviation " + command.DeviationName);
+
             var deviation = MapToDeviation(command);
 
 			using (var dbContext = new OVDbContext())
@@ -27,12 +30,15 @@ namespace OV.Bus
 
         public void Handle(UpdateDeviationCommand command)
         {
-            var deviation = MapToDeviation(command);
 
+			Console.WriteLine("Handling message " + command.GetType().Name + " for deviation " + command.DeviationName);
+
+			var deviation = MapToDeviation(command);
+				
             using (var dbContext = new OVDbContext())
             {
                 var deviationRepository = new Repository<Deviation>(dbContext);
-                deviationRepository.UpdateItem(deviation);
+				deviationRepository.UpdateItem(deviation);
                 deviationRepository.Save();
                 deviationRepository.Dispose();
             }

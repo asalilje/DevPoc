@@ -34,6 +34,8 @@ namespace OV.Web.Models
 		}
 
         public string Status { get; set; }
+
+		public bool HasBookings { get; set; }
 	}
 	
 	public class DeviationType

@@ -16,7 +16,7 @@ namespace Deviation.Test
         public void TestMapperMapToModel()
         {
 
-        	var bookings = new Collection<Booking> {new Booking {BookingId = Guid.NewGuid()}};
+        	var bookings = new Collection<Booking> {new Booking {BookingGuid = Guid.NewGuid()}};
 
         	var entity = new Entities.Deviation
                              {
